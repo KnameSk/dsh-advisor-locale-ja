@@ -1,0 +1,73 @@
+{
+  "name": "dsh-advisor-locale-ja",
+  "version": "0.1.0",
+  "description": "Japanese (日本語) interface for the dsh-advisor settings page — a standalone DSH client plugin that adds Advisor Settings, consultation budget, history, and connection-test copy in Japanese without touching the Advisor core.",
+  "keywords": [
+    "cordis",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "dsh-advisor",
+    "i18n",
+    "japanese",
+    "locale"
+  ],
+  "homepage": "https://github.com/KnameSk/dsh-advisor-locale-ja#readme",
+  "bugs": {
+    "url": "https://github.com/KnameSk/dsh-advisor-locale-ja/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KnameSk/dsh-advisor-locale-ja.git"
+  },
+  "files": [
+    "dsh/index.js",
+    "dsh/client.js",
+    "cordis.patch.yml"
+  ],
+  "type": "module",
+  "main": "dsh/index.js",
+  "exports": {
+    ".": "./dsh/index.js",
+    "./client": "./dsh/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test --test-isolation=none test/addon-locale.test.mjs",
+    "prepack": "node scripts/build-client.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-client-locale": "^0.2.1-rc.2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-client-locale": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.5"
+  }
+}

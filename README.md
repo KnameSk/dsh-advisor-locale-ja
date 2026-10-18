@@ -30,6 +30,12 @@ GitHub から直接インストールできます。`<profile>` は実際に使�
 dsh plugin --profile <profile> add github:KnameSk/dsh-advisor-locale-ja
 ```
 
+**配布物として受け取る場合は、バージョンをタグで固定してください。** `main` を指すインストールは後日の変更で中身が変わるため、再現性がありません。公開済みのタグは変更されません。
+
+```bash
+dsh plugin --profile <profile> add github:KnameSk/dsh-advisor-locale-ja#v0.1.0
+```
+
 アンインストールする場合は、次のコマンドを実行します。
 
 ```bash
@@ -74,6 +80,8 @@ npm run build   # dsh/client.js を再生成
 ```
 
 `dsh/client.js` は `scripts/build-client.mjs` が生成する成果物です。**手で編集しないでください。** ソースを変更したら `npm run build` を実行し、生成物もコミットします。`npm run check` はバンドルが古い場合に失敗します。
+
+公開・タグ付け・タグ付きインストールの検証手順は [docs/RELEASING.md](./docs/RELEASING.md) にあります。公開済みバージョンは不変として扱います。
 
 ### 構成
 

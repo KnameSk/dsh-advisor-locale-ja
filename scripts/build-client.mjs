@@ -68,7 +68,12 @@ if (process.argv.includes("--check")) {
   } catch {
     current = "";
   }
-  if (current !== bundle) {
+  // Git may check the file out with CRLF on Windows even though the committed
+  // bytes are LF, and the generated bundle is always LF. Comparing raw text
+  // would then depend on the checkout rather than on the source, so both sides
+  // are normalized before they are compared.
+  const normalized = current.replace(/\r\n/gu, "\n");
+  if (normalized !== bundle) {
     console.error("dsh/client.js is out of date; run `npm run build` and commit the result");
     process.exitCode = 1;
   } else {
